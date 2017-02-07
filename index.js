@@ -18,6 +18,21 @@ let db = {
 
 const uuidV1 = require('uuid/v1');
 
+// put not working //
+
+server.put('/users/:id', function (req, res) {
+  let userId = req.params.id
+  let user = _findUserbyID(userID)
+  if (user) {
+    user.name = req.body.name
+    return res.send(user)
+  }
+  return res.send(new Error("ID error!"))
+})
+
+//
+
+
 server.post('/user', function (req, res) {
 
   let user = req.body
@@ -57,15 +72,7 @@ server.get('/users/:id', function (req, res) {
 
 
 
-server.put('/users/:id', function (req, res) {
-  let userId = req.params.id
-  let user = _findUserbyID(userID)
-  if (user) {
-    user.name = req.body.name
-    return res.send(user)
-  }
-  return res.send(new Error("ID error!"))
-})
+
 
 server.delete('/users/:id', function (req, res) {
 
